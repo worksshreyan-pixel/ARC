@@ -14,10 +14,6 @@ from supabase import create_client, Client
 
 load_dotenv()
 
-@app.get("/")
-def read_root():
-    return {"status": "online", "assistant": "Ava", "message": "Project ARC backend is active and running."}
-
 app = FastAPI()
 
 app.add_middleware(
@@ -27,6 +23,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+@app.get("/")
+def read_root():
+    return {"status": "online", "assistant": "Ava", "message": "Project ARC backend is active and running."}
 
 # Initialize AI Clients
 gemini_client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
