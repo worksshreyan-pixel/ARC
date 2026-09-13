@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, UIEvent } from 'react'
 
-const SERVER_HTTP = 'http://127.0.0.1:8000/api/command'
-const SERVER_WS = 'ws://127.0.0.1:8000/ws/feed'
+const SERVER_HTTP = 'https://arc-dkdn.onrender.com/api/command'
+const SERVER_WS = 'wss://arc-dkdn.onrender.com/ws/feed'
 
 export default function App() {
   const [status, setStatus] = useState<'idle' | 'thinking' | 'speaking' | 'error' | 'offline'>('offline')
