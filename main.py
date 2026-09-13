@@ -2,6 +2,7 @@ import os
 import subprocess
 import platform
 from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -25,10 +26,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/", response_class=HTMLResponse)
+@app.get("/")
 def read_root():
-    with open("index.html", "r", encoding="utf-8") as f:
-        return f.read()
+    # Looks for 'index' or 'index.html' in the root directory
+    file_path = "index" if os.path.exists("index") else "index.html"
+    return FileResponse(file_path)
 
 # Initialize AI Clients
 gemini_client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
