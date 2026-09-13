@@ -14,6 +14,10 @@ from supabase import create_client, Client
 
 load_dotenv()
 
+@app.get("/")
+def read_root():
+    return {"status": "online", "assistant": "Ava", "message": "Project ARC backend is active and running."}
+
 app = FastAPI()
 
 app.add_middleware(
